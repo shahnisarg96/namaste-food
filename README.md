@@ -19,3 +19,7 @@
 - HTTPs
 - Tree Shaking - remove unused code
 - Different dev and prod builds
+
+
+useState - Super powerful state variables in react
+useEffect - 
