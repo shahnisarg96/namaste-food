@@ -12,16 +12,21 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import React, { Suspense } from "react";
+import UserContext from "./utils/UserContext";
 
 const Grocery = React.lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
+    const [userName, setUserName] = React.useState("Guest");
+
     return (
-        <div className="app">
-            <Header />
-            <Outlet />
-            <Footer />
-        </div>
+        <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
+            <div className="app">
+                <Header />
+                <Outlet />
+                <Footer />
+            </div>
+        </UserContext.Provider>
     );
 }
 

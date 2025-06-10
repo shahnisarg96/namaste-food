@@ -1,9 +1,10 @@
-import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect, use } from "react";
+import RestaurantCard, { PromotedRestaurantCard } from "./RestaurantCard";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 // import restaurantData from "../utils/mockData";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
     const [restaurantData, setRestaurantData] = useState([]);
@@ -11,6 +12,8 @@ const Body = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     const onlineStatus = useOnlineStatus();
+
+    const { loggedInUser, setUserName } = useContext(UserContext);
 
     useEffect(() => {
         fetchData();
@@ -36,6 +39,10 @@ const Body = () => {
     return restaurantData.length === 0 ? <Shimmer /> : (
         <div className="body flex flex-col items-center">
             <div className="flex items-center p-4 bg-gray-200 m-4">
+                <label className="label m-2 p-2">Your name?</label>
+                <input className="input border p-2" type="text" placeholder="Enter your name" onChange={(e) => setUserName(e.target.value)} />
+            </div>
+            <div className="flex items-center p-4 bg-gray-200 m-4">
                 <h2 className="text-lg font-semibold">Filter</h2>
                 <button className="ml-2 border bg-blue-800 text-white p-2" onClick={() => {
                     setFilteredData(restaurantData);
@@ -60,7 +67,11 @@ const Body = () => {
             <div className="flex flex-wrap justify-center gap-4 p-4">
                 {filteredData.map((restaurant) => (
                     <Link to={`/restaurants/${restaurant.info.id}`} key={restaurant.info.id}>
-                        <RestaurantCard resList={[restaurant]} />
+                        {(restaurant.info.isOpen) ? (
+                            <PromotedRestaurantCard resList={[restaurant]} />
+                        ) : (
+                            <RestaurantCard resList={[restaurant]} />
+                        )}
                     </Link>
                 ))}
             </div>

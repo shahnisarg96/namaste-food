@@ -1,11 +1,14 @@
 import { IMAGE_PLACEHOLDER } from '../utils/constants';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router';
 import useOnlineStatus from '../utils/useOnlineStatus';
+import UserContext from '../utils/UserContext';
 
 const Header = () => {
     const [btnName, setBtnName] = useState("Login");
     const onlineStatus = useOnlineStatus();
+
+    const { loggedInUser } = useContext(UserContext);
 
     useEffect(() => {
         console.log("Header component mounted");
@@ -26,11 +29,7 @@ const Header = () => {
                     <li className='hover:text-blue-500'><Link to="/about">About</Link></li>
                     <li className='hover:text-blue-500'><Link to="/contact">Contact</Link></li>
                     <li className='hover:text-blue-500'><Link to="/grocery">Grocery</Link></li>
-                    <button className="login-button hover:bg-blue-500 text-white bg-blue-800 p-2 rounded"
-                        onClick={() => {
-                            setBtnName(btnName === "Login" ? "Logout" : "Login");
-                        }}
-                    >{btnName}</button>
+                    <li className='px-4 font-bold'>User: {loggedInUser}</li>
                 </ul>
             </div>
         </header>

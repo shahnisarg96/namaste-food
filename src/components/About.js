@@ -1,3 +1,4 @@
+import UserContext from "../utils/UserContext";
 import User from "./User";
 import UserClass from "./UserClass";
 import React from 'react';
@@ -20,6 +21,13 @@ class About extends React.Component {
         return (
             <div className="about-container flex flex-col items-center p-4">
                 <h1 className="text-2xl font-bold mb-4">About Page</h1>
+                <div>
+                    <UserContext.Consumer
+                        children={({ loggedInUser }) => (
+                            <h2 className="text-lg font-semibold">{loggedInUser}</h2>
+                        )}
+                    />
+                </div>
                 <h1 className="text-xl font-semibold">{this.state.title}</h1>
                 <p className="text-sm">This is the about page of our application.</p>
                 <User name="Function Component" />
