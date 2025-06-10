@@ -17,7 +17,7 @@ const RestaurantMenu = () => {
         const json = await response.json();
 
         setResInfo(json.data.cards[2].card.card.info);
-        setResMenu(json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[3].card.card.itemCards);
+        setResMenu(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card?.itemCards);
     }
 
     if (!resInfo || resInfo.length === 0) {
