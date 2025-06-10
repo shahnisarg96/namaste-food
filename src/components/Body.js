@@ -1,13 +1,16 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 // import restaurantData from "../utils/mockData";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
     const [restaurantData, setRestaurantData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+
+    const onlineStatus = useOnlineStatus();
 
     useEffect(() => {
         fetchData();
@@ -24,6 +27,10 @@ const Body = () => {
         } catch (error) {
             console.error("Error fetching restaurant data:", error);
         }
+    }
+
+    if (!onlineStatus) {
+        return <h1>Looks like you are offline. Please check your internet connection.</h1>;
     }
 
     return restaurantData.length === 0 ? <Shimmer /> : (
