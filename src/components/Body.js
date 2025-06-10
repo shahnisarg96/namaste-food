@@ -34,20 +34,21 @@ const Body = () => {
     }
 
     return restaurantData.length === 0 ? <Shimmer /> : (
-        <div className="body">
-            <div className="filter">
-                <h2>Filter</h2>
-                <button onClick={() => {
+        <div className="body flex flex-col items-center">
+            <div className="flex items-center p-4 bg-gray-200 m-4">
+                <h2 className="text-lg font-semibold">Filter</h2>
+                <button className="ml-2 border bg-blue-800 text-white p-2" onClick={() => {
                     setFilteredData(restaurantData);
                 }}>ALL</button>
-                <button onClick={() => {
+                <button className="ml-2 p-2 border bg-blue-800 text-white" onClick={() => {
                     const filteredData = restaurantData.filter(restaurant => restaurant.info.avgRating >= 4.5);
                     setFilteredData(filteredData);
                 }}>Top Rated</button>
             </div>
-            <div className="search">
-                <input type="text" placeholder="Search..." onChange={(e) => setSearchQuery(e.target.value)} />
+            <div className="flex items-center p-4 bg-gray-200 m-4">
+                <input className="border p-2" type="text" placeholder="Search..." onChange={(e) => setSearchQuery(e.target.value)} />
                 <button
+                    className="border bg-blue-800 text-white p-2 ml-2"
                     onClick={() => {
                         const filter = restaurantData.filter(restaurant =>
                             restaurant.info.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -56,7 +57,7 @@ const Body = () => {
                     }}
                 >Search</button>
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap justify-center gap-4 p-4">
                 {filteredData.map((restaurant) => (
                     <Link to={`/restaurants/${restaurant.info.id}`} key={restaurant.info.id}>
                         <RestaurantCard resList={[restaurant]} />

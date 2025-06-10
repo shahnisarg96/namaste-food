@@ -31,13 +31,13 @@ class UserClass extends React.Component {
         const { name, company, bio, location, avatar_url } = this.state;
         console.log('Child Render called');
         return (
-            <div>
-                <h1>User Information</h1>
-                <p>Name: {name}</p>
-                <p>Company: {company}</p>
-                <p>Bio: {bio}</p>
-                <p>Location: {location}</p>
-                {avatar_url && <img src={avatar_url} alt="User Avatar" />}
+            <div className="flex user-class-container flex flex-col items-center p-4 border rounded-lg shadow-lg gap-4 bg-gray-100 max-w-lg min-w-xs">
+                <h1 className="text-lg font-semibold">User Information</h1>
+                <p className="text-sm">Name: {name}</p>
+                <p className="text-sm">Company: {company}</p>
+                <p className="text-sm">Bio: {bio}</p>
+                <p className="text-sm">Location: {location}</p>
+                {avatar_url && <img className="w-24 h-24 object-cover rounded-full" src={avatar_url} alt="User Avatar" />}
             </div>
         );
     }
