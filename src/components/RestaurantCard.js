@@ -11,6 +11,7 @@ const RestaurantCard = ({ resList }) => {
             <p>Cuisines: {restaurantData.info.cuisines.join(", ")}</p>
             <p>Cost for Two: {restaurantData.info.costForTwo}</p>
             <p>Delivery Time: {restaurantData.info.sla.deliveryTime} mins</p>
+            <p>ID: {restaurantData.info.id}</p>
             <button>Add to Cart</button>
         </div>
     );

@@ -1,8 +1,16 @@
 import { IMAGE_PLACEHOLDER } from '../utils/constants';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 
 const Header = () => {
     const [btnName, setBtnName] = useState("Login");
+
+    useEffect(() => {
+        console.log("Header component mounted");
+        return () => {
+            console.log("Header component unmounted");
+        };
+    }, []);
 
     return (
         <header className="header">
@@ -11,10 +19,10 @@ const Header = () => {
             </div>
             <div className="nav-items">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#services">Cart</a></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/services">Cart</Link></li>
                     <button className="login-button"
                         onClick={() => {
                             setBtnName(btnName === "Login" ? "Logout" : "Login");
