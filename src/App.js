@@ -6,7 +6,7 @@ import {
     createBrowserRouter,
     Outlet,
     RouterProvider
-} from "react-router";
+} from "react-router-dom";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
