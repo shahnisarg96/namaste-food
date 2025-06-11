@@ -1,7 +1,16 @@
 import { CDN_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../utils/cartSlice";
 
 const CategoryItemList = (props) => {
     const { data } = props;
+
+    const dispatch = useDispatch();
+
+    const handleAddItem = (item) => {
+        dispatch(addItemToCart(item));
+    };
+
     return (
         <>
             {data && data.map((item) => (
@@ -10,7 +19,9 @@ const CategoryItemList = (props) => {
                         <h2 className="text-lg font-semibold wrap-anywhere">{item.card.info.name}</h2>
                         <p className="text-sm">Price: ₹{item.card.info.price / 100}</p>
                         {/* <p className="text-sm">Description: {item.card.info.description}</p> */}
-                        <button className="border bg-blue-800 text-white p-2">Add to Cart</button>
+                        <button className="border bg-blue-800 text-white p-2" onClick={() => handleAddItem(item)}>
+                            Add to Cart
+                        </button>
                     </div>
                     <div className="w-3/12 p-4">
                         <img src={CDN_URL + item.card.info.imageId} alt={item.card.info.name} className="w-20 h-20 object-cover rounded-t-md m-2" />
