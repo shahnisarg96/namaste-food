@@ -121,7 +121,7 @@ namaste-food/
 
 ## 📚 References
 
-- [Namaste React (YouTube Series)](https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP)
+- [Namaste React](https://namastedev.com/learn/namaste-react)
 - [React Documentation](https://react.dev/)
 - [Parcel Documentation](https://parceljs.org/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/)
